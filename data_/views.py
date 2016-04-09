@@ -45,7 +45,7 @@ def post_data(request):
             'unknown': data_array[4],
             'temp': data_array[5],
             'eda': data_array[6],
-            'trial': 1
+            'trial': 299
         })
         and save them as Trial, Data model 
     '''
@@ -76,7 +76,7 @@ def post_data(request):
 
             #data processing
             print(time.time() * 1000) #print current time in miliseconds
-            last_window = Data.objects.all().order_by('-id')[:POINTS]
+            last_window = Data.objects.all().order_by('-id')[:POINTS] #need this many points in window size
             window_eda = []
             for point in last_window:
                 if point.eda != None:
@@ -128,20 +128,23 @@ def get_simple_vals(eda_array):
 
 
 class Results(View):
+    '''Dummy class used for testing. Can be used as superclass for the different result views'''
     def get(self, request): 
-        # Get the data object 
-        result = Data.objects.get(pk=1) 
-        json_result = { 
-                                        "data_text": result.data_text,
-                                        "x": result.x_coord,
-                                        "y": result.y_coord,
-                                        "z": result.z_coord,
-                                        "eda": result.eda,
-                                        "mean": result.mean,
-                                        "frequency": result.frequency,
-                                        "sums": result.sums
-                                    }
-        return JsonResponse(json_result); 
+        # # Get the data object 
+        # result = Data.objects.get(pk=1) 
+        # json_result = { 
+        #                                 "data_text": result.data_text,
+        #                                 "x": result.x_coord,
+        #                                 "y": result.y_coord,
+        #                                 "z": result.z_coord,
+        #                                 "eda": result.eda,
+        #                                 "mean": result.mean,
+        #                                 "frequency": result.frequency,
+        #                                 "sums": result.sums
+        #                             }
+        return JsonResponse({
+            'message': 'If youre seeing this test is successful',
+            }); 
     
 
 

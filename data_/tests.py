@@ -62,26 +62,38 @@ class TrialAndDataModelsTest(TestCase):
         self.assertEqual(Data.objects.count(), 0)
 
 
-# class EdaViewTest(TestCase):
-#     def test_display_all_items(self):
-#         list_ = List.objects.create()
-#         Item.objects.create(text='itemey 1', list=list_)
-#         Item.objects.create(text='itemey 2', list=list_)
-#         other_list = List.objects.create()
-#         Item.objects.create(text='other list 1', list=other_list)
-#         Item.objects.create(text='other list 2', list=other_list)
+class EdaViewTest(TestCase):
+    def test_display_all_items(self):
+        #dummy test
+        response = self.client.get('/data/results/')
+        self.assertContains(response, 'successful')
+        self.assertNotContains(response, 'debug')
 
-#         response = self.client.get('/lists/%d/' % (list_.id))
+        #test eda value view
+        response = self.client.get('/data/eda_view/')
+        self.assertContains(response, 'EDA')
+        self.assertNotContains(response, 'debug')
 
-#         self.assertContains(response, 'itemey 1')
-#         self.assertContains(response, 'itemey 2')
-#         self.assertNotContains(response, 'other list 1')
-#         self.assertNotContains(response, 'other list 2')
+        #test frequency value view
+        response = self.client.get('/data/frequency_view/')
+        self.assertContains(response, 'Frequency')
+        self.assertNotContains(response, 'debug')
 
-#     def test_uses_list_template(self):
-#         list_ = List.objects.create()
-#         response = self.client.get('/lists/%d/' % (list_.id))
-#         self.assertTemplateUsed(response, 'list.html')
+        #test sums value view
+        response = self.client.get('/data/sums_view/')
+        self.assertContains(response, 'Sum')
+        self.assertNotContains(response, 'debug')
+
+                #test average value view
+        response = self.client.get('/data/mean_view/')
+        self.assertContains(response, 'Mean')
+        self.assertNotContains(response, 'debug')
+
+
+    # def test_uses_list_template(self):
+    #     list_ = List.objects.create()
+    #     response = self.client.get('/lists/%d/' % (list_.id))
+    #     self.assertTemplateUsed(response, 'list.html')
 
 
 class PostDataTest(TestCase):
@@ -138,6 +150,9 @@ class PostDataTest(TestCase):
         t = Trial.objects.filter(num=299)[0]
         filtered_d = t.data_set.filter(eda=0.100)[0]
         self.assertEqual(filtered_d.temp, 40)
+        self.assertEqual(t.data_set.count(), 2)
+
+
 
 
 

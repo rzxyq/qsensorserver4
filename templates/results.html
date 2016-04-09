@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+Results 
+{% endblock %}
+
+
+{% block include_css %}
+<style type="text/css">
+
+    body {
+        font: 10px sans-serif;
+    }
+
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+
+
+    .line {
+      fill: none;
+      stroke: blue;
+      stroke-width: 1.5px;
+    }
+
+
+    /* To make the area section */
+    .area {
+        fill: #b0c4de;
+        stroke-width: 0;
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="svg-section"></div>
+<div class="col-xs-offset-5" style="margin-top: 40px;">
+    <div class="row btn btn-primary" id="getData">Get EDA Data</div> 
+</div> 
+{% endblock %}
+
+{% block include_js %}
+<script src="{% static 'js/results.js' %}?{% now 'U' %}"></script>
+
+{% endblock %}

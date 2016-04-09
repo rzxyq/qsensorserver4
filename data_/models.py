@@ -1,17 +1,11 @@
 from django.db import models
 #https://docs.djangoproject.com/en/1.9/topics/db/examples/many_to_one/
-# python manage.py shell
-# from data_.models import Trial, Data
-#from django.utils import timezone
-# t1 = Trial(1, 'first trial', datetime.date.today()) #1 at beginning is pk
-# d1 = Data(1, 9,0.18,0.78,0.75,3.95,32.6,0.167, 0.267,0.167,2, data_text='9,0.18,0.78,0.75,3.95,32.6,0.167', date_time=timezone.now(), trial=t1)
-# t1.data_set.all()
-
 # Used to manage Data objects and group into one setting
 class Trial(models.Model): 
     num = models.CharField(max_length=50, unique=True)
     name = models.CharField(max_length=200)
     date = models.DateField()
+    # Sample.objects.filter(date__range=["2011-01-01", "2011-01-31"])
     def __str__(self):              # __unicode__ on Python 2
         return "%s %s" % (self.num, self.name)
     class Meta:

@@ -2,6 +2,9 @@ import json
 import requests 
 from time import sleep 
 
+'''define this value before you post!'''
+TRIAL_NUMBER = 3
+
 # read a text file as a list of lines
 # find the last line, change to a file you have
 while(True): 
@@ -23,8 +26,6 @@ while(True):
 
         if (data_array[0] == 'C' or data_array[0] == 'c'): 
             data_array[0] = 10 # Modify for 10's 
-
-
         info = {
             'data': data, # Text-based data
             'seconds': data_array[0],
@@ -34,6 +35,7 @@ while(True):
             'unknown': data_array[4],
             'temp': data_array[5],
             'eda': data_array[6],
+            'trial': TRIAL_NUMBER
         }
 
     # Catch any exceptions as necessary 
