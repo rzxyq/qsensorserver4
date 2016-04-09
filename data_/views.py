@@ -75,6 +75,7 @@ def post_data(request):
             target.trial = t
 
             #data processing
+            #WARNING: This doesn't taken into account trial. So ignore first few minutes of this trial
             print(time.time() * 1000) #print current time in miliseconds
             last_window = Data.objects.all().order_by('-id')[:POINTS] #need this many points in window size
             window_eda = []
