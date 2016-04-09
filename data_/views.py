@@ -153,12 +153,13 @@ class Results(View):
 
 
 class ResultView(View):
+    def __init__(self, *args, **kwargs):
+        self.query = 'eda'
 
     def get(self, request): 
-        template = loader.get_template('results.html')
+        template = loader.get_template('results_' + self.query + '.html')
         context = {}
         return HttpResponse(template.render(context, request))
-
 
     def post(self, request): 
         json_data = json.loads(request.body.decode('utf-8'))

@@ -1,0 +1,16 @@
+04/09/16
+
+UNITTEST AND REFACTORING
+data_ module now contains unittest. Everytime you make any changes make sure to run "python manage.py test data_" to make sure all tests pass.
+
+URL
+Urls changed slightly to make it more intuitive. /data/eda_view, /data/mean_view etc. are now the urls for viewing data.
+
+ADMIN AND MODELS
+Added trial and model one-to-many relationship. Added admin interface. Can now go to /admin (relative path, e.g. localhost:8000/admin) to view Trial and Data. Password and username are both ruoyanqin.
+
+DATABASE
+For simpler backup and moving the using the repo on different computers, switched from Postgres to sqlite. Can now view data directly in db.sqlite3 and copy/paste. 
+
+VIRTUAL ENV
+Can "source activate"  into the virtual env in Venv now. Alternative is to "pip install -r requirements.txt"
