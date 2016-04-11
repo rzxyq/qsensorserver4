@@ -62,7 +62,8 @@ def post_data(request):
             target.temp = json_data.get('temp')
             target.eda = json_data.get('eda')
 
-            target.date_time = timezone.now()
+            now = timezone.make_aware(datetime.datetime.now(),timezone.get_default_timezone())
+            target.date_time = now.astimezone()
 
             #get trial
             trial_num = json_data.get('trial')
@@ -76,7 +77,7 @@ def post_data(request):
 
             #data processing
             #WARNING: This doesn't taken into account trial. So ignore first few minutes of this trial
-            print(time.time() * 1000) #print current time in miliseconds
+            # print(time.time() * 1000) #print current time in miliseconds
             last_window = Data.objects.all().order_by('-id')[:POINTS] #need this many points in window size
             window_eda = []
             for point in last_window:
@@ -96,24 +97,19 @@ def get_simple_vals(eda_array):
     if len(eda_array)==0:
         return [0,0,0]
     eda_array = np.array(eda_array)
-    print("eda array...")
-    for val in eda_array:
-        print(val)
-
     x = np.linspace(1, len(eda_array), num=len(eda_array))
     y = eda_array
-    print(y)
     # normalize with log
     # and blur with gaussian
     y = filters.gaussian_filter(y, 30)
     indexes = peakutils.indexes(y, thres=np.mean(y), min_dist=10)
    
     
-    print("indexes......")
-    print("length:" + str(len(indexes)))
-    print(indexes)
-    #print(x[indexes])
-    #print(y[indexes])
+    # print("indexes......")
+    # print("length:" + str(len(indexes)))
+    # print(indexes)
+    # #print(x[indexes])
+    # #print(y[indexes])
 
     if len(indexes) == 0:
         return [0,0,0]

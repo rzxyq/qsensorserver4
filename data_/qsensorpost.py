@@ -3,14 +3,14 @@ import requests
 from time import sleep 
 
 '''define this value before you post!'''
-TRIAL_NUMBER = 3
+TRIAL_NUMBER = 5
 
 # read a text file as a list of lines
 # find the last line, change to a file you have
 while(True): 
-    # url = "http://127.0.0.1:8000/data/post_data"
+    url = "http://127.0.0.1:8000/data/post_data"
     
-    url = "https://qsensorserver2.herokuapp.com/data/post_data"
+    # url = "https://qsensorserver2.herokuapp.com/data/post_data"
 
     fileHandle = open('./screenlog.0')
     lineList = fileHandle.readlines()
