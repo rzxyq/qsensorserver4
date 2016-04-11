@@ -3,7 +3,7 @@ import requests
 from time import sleep 
 
 '''define this value before you post!'''
-TRIAL_NUMBER = 5
+TRIAL_NUMBER = 7
 
 # read a text file as a list of lines
 # find the last line, change to a file you have

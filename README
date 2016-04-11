@@ -14,3 +14,12 @@ For simpler backup and moving the using the repo on different computers, switche
 
 VIRTUAL ENV
 Can "source activate"  into the virtual env in Venv now. Alternative is to "pip install -r requirements.txt"
+
+
+New instructions:
+Go to qsensorserver4/data_, open up 3 terminals at this location
+Edit qsensorpost.py IMPORTANT. Change trial number.
+Make sure sensor is connected and server is running on terminal 1, then run ./collect.sh on terminal 2
+Check printlns on the terminal 1. If it’s getting eda values, go to step 4. Else, run qsensorpost.py
+View values at localhost:8000/data/eda_view, localhost:8000/data/frequency_view, localhost:8000/data/sums_view, localhost:8000/data/mean_view.
+Additionally, go to localhost:8000/admin with password&username ruoyanqin. Click on trials and you can see or delete or rename trials.
