@@ -51,7 +51,7 @@ def post_data(request):
     '''
     if request.method=='POST':
         json_data = json.loads(request.body.decode('utf-8'))
-        if json_data.get('data'): #If at least raw test data exists
+        if json_data.get('data')!='Error': #If at least raw test data exists
             target = Data()
             target.data_text = json_data.get('data')
             target.seconds = json_data.get('seconds')
